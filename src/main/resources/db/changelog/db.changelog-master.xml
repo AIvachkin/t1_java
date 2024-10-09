@@ -4,4 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <include file="30-01-changelog.sql" relativeToChangelogFile="true"/>
+    <include file="08-10-24-changelog.sql" relativeToChangelogFile="true"/>
+    <include file="account-init.sql" relativeToChangelogFile="true"/>
+    <include file="transaction-init.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
