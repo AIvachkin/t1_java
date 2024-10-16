@@ -15,8 +15,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "time_limit_exceed_log")
 public class TimeLimitExceedLog extends AbstractPersistable<Long> {
 
-    @Column(name = "method_signature")
-    private String methodSignature;
+    @Column(name = "method_name")
+    private String methodName;
+
+    @Column(name = "method_parameters")
+    private String methodParameters;
 
     @Column(name = "execution_time")
     private Long executionTime;
