@@ -37,6 +37,8 @@ t1:
       server: localhost:9092
     consumer:
       group-id: t1-demo
+      account-group-id: t1_account_group
+      transaction-group-id: t1_transaction_group
       max.poll.records: 10
     producer:
       enable: true
@@ -44,6 +46,9 @@ t1:
       client_registration: t1_demo_client_registration
       client_id_registered: t1_demo_client_registered
       client_transactions: t1_demo_client_transactions
+      accounts: t1_demo_accounts
+      transactions: t1_demo_transactions
+      metric_trace: t1_demo_metric_trace
     listener:
       poll-timeout: 1000
 
@@ -58,3 +63,5 @@ track:
   db:
     enabled: false
   time-limit-exceed: 1000
+  time-limit:
+    threshold: 100
