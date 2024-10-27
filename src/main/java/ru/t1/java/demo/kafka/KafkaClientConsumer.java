@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import ru.t1.java.demo.model.Client;
 import ru.t1.java.demo.model.dto.ClientDto;
+import ru.t1.java.demo.model.dto.TransactionDto;
 import ru.t1.java.demo.service.ClientService;
 import ru.t1.java.demo.util.ClientMapper;
 
@@ -43,7 +44,20 @@ public class KafkaClientConsumer {
             ack.acknowledge();
         }
 
-
         log.debug("Client consumer: записи обработаны");
+    }
+
+    @KafkaListener(id = "${t1.kafka.consumer.client-transactions-id}",
+            topics = "${t1.kafka.topic.client_transactions}",
+            containerFactory = "clientTransactionsListenerContainerFactory")
+    public void listen(@Payload TransactionDto transactionDto,
+                       Acknowledgment ack) {
+        try {
+            log.info("Received transaction: {}", transactionDto);
+            clientService.processTransaction(transactionDto);
+            ack.acknowledge();
+        } catch (Exception e) {
+            log.error("Error processing transaction: {}", transactionDto, e);
+        }
     }
 }
